@@ -1,13 +1,15 @@
 ---
 name: team-arch
-description: 启动一个架构分析团队（scanner/analyzer×2/analyst/writer），通过自动化指标采集+双分析师独立分析+共识合并+交叉验证，输出高质量结构化架构文档和 Mermaid 可视化图表。使用方式：/team-arch [--auto] [--depth=shallow|standard|deep] 项目路径或描述
+description: 启动一个架构分析团队（scanner/analyzer×2/analyst/writer），通过自动化指标采集+双分析师独立分析+共识合并+交叉验证，输出高质量结构化架构文档和 Mermaid 可视化图表。使用方式：/team-arch [--auto] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
 disable-model-invocation: true
-argument-hint: [--auto] [--depth=shallow|standard|deep] 项目路径或描述
+argument-hint: [--auto] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：
 - `--auto`：自主模式（减少用户确认）
 - `--depth=shallow|standard|deep`：分析深度（默认 `standard`）
+- `--focus=module1,module2`：聚焦分析模块（可选，默认全量分析）
+- `--lang=zh|en`：输出语言（默认 `zh` 中文）
 
 | 模式 | 用户确认范围 | 条件节点处理 |
 |------|-------------|-------------|
@@ -20,6 +22,7 @@ argument-hint: [--auto] [--depth=shallow|standard|deep] 项目路径或描述
 - **分歧超过 50%** → **不可跳过，必须暂停问用户**（熔断机制）
 - **交叉验证异议超过 3 项** → **不可跳过，必须暂停问用户**（熔断机制）
 - **项目过大无法完整分析** → scanner 识别核心模块，analyzer 聚焦核心模块
+- **`--focus` 参数处理**：如果用户指定了 `--focus`，scanner 和 analyzer 优先分析指定模块，其余模块仅概览级别
 
 分析深度说明：
 
@@ -251,8 +254,9 @@ Team lead 启动 writer，将以下内容传递：
 - Scanner 的项目概况报告、依赖分析报告和客观指标
 - Analyst 的最终合并分析报告
 - 仲裁结果（如有）
+- `--lang` 参数
 
-Writer 基于这些结构化输入生成最终架构文档。文档格式：
+Writer 按指定语言基于这些结构化输入生成最终架构文档。文档格式：
 
 ```markdown
 # [项目名] 架构分析报告
@@ -439,6 +443,7 @@ Team lead 向用户输出：
 | Analyzer 无法理解某模块 | 在报告中标注"未充分分析"，analyst 归入盲区清单 |
 | 项目缺少 README/文档 | Scanner 基于代码结构和构建配置推断项目信息 |
 | Analyst 盲区清单非空 | Analyzer 补充分析遗漏模块后 analyst 更新合并结果 |
+| Teammate 无响应/崩溃 | Team lead 重新启动同名 teammate（传入完整上下文），从当前阶段恢复。如果是 analyzer 崩溃，检查已发送的部分报告决定是否需要重新分析。 |
 
 ---
 
