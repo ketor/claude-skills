@@ -1,6 +1,6 @@
 ---
 name: team-dev
-description: 启动一个完整的研发团队（architect/coder/reviewer/tester），按阶段协作完成架构设计、编码实现、代码审查和集成测试。使用方式：/team-dev [--auto] 你的需求描述
+description: 启动一个完整的研发团队（architect×2/coder/reviewer/tester），按阶段协作完成架构设计、编码实现、代码审查和集成测试。使用方式：/team-dev [--auto] 你的需求描述
 disable-model-invocation: true
 argument-hint: [--auto] 需求描述
 ---
@@ -14,7 +14,7 @@ argument-hint: [--auto] 需求描述
 
 自主模式下条件节点自动决策规则：
 - **需求分级不确定** → team lead 自行判断，在方案确认时告知用户判定结果
-- **architect/reviewer 分歧** → 采纳 architect 方案（方案制定者优先），在方案确认时附带争议摘要
+- **architect-1/architect-2/reviewer 分歧** → team lead 综合三方观点裁决，在方案确认时附带争议摘要和裁决理由
 - **编码期间决策升级** → architect 自行决策
 - **设计缺陷修复** → architect 自行调整方案
 - **迭代超 3 轮** → **不可跳过，必须暂停问用户**（熔断机制）
@@ -27,7 +27,7 @@ argument-hint: [--auto] 需求描述
 ```
 阶段零  需求分级 → 判断 S/M/L
          ↓
-阶段一  架构设计 → architect 出方案 → reviewer 审查 → 用户确认
+阶段一  架构设计 → architect×2 独立设计 → 三人组会讨论收敛 → 用户确认
          ↓
 阶段二  任务拆解 + 并行实现 → coder×2 TDD 编码（worktree 隔离）+ tester 设计测试方案
          ↓
@@ -37,16 +37,17 @@ argument-hint: [--auto] 需求描述
          ↓
 阶段五  收尾 → 总结 + 清理
 
-S 流程：阶段零 → 精简版阶段一 → 单 coder 实现 → reviewer 审查 → 收尾（跳过集成测试）
+S 流程：阶段零 → 精简版阶段一（双 architect + reviewer 组会） → 单 coder 实现 → reviewer 审查 → 收尾（跳过集成测试）
 ```
 
 ## 角色定义
 
 | 角色 | 职责 |
 |------|------|
-| architect | 阅读代码、分析需求、识别技术栈、设计技术方案、做架构决策。**不编写实现代码，只做分析和设计。** |
+| architect-1 | 阅读代码、分析需求、识别技术栈、独立设计技术方案。参与组会讨论。**不编写实现代码，只做分析和设计。** |
+| architect-2 | 同 architect-1 职责，独立设计技术方案。参与组会讨论。**不编写实现代码，只做分析和设计。独立工作阶段不与 architect-1 交流。** |
 | coder | 根据设计方案编写、重构代码和单元测试 |
-| reviewer | 审查方案与目标一致性、审查代码和测试代码与方案一致性。**不编写或修改代码，只做审查。** |
+| reviewer | 参与组会讨论、评审设计方案与需求目标的一致性，审查代码和测试代码与方案一致性。**不编写或修改代码，只做审查和评审。** |
 | tester | 设计集成测试方案、编写测试用例、执行测试、输出报告 |
 
 ---
@@ -57,9 +58,9 @@ Team lead 根据需求性质评估规模，决定执行流程：
 
 | 规模 | 判断标准 | 团队配置 | 流程差异 |
 |------|---------|---------|---------|
-| **S（小）** | 单一功能点修改、bug 修复、配置变更等简单改动 | 1 architect + 1 coder + 1 reviewer | 精简流程（见下方 S 流程） |
-| **M（中）** | 跨模块的新功能、中等规模重构 | 1 architect + 2 coder + 1 reviewer + 1 tester | 完整流程 |
-| **L（大）** | 架构变更、新系统/子系统、跨多模块大规模改动 | 1 architect + 2 coder + 1 reviewer + 1 tester | 完整流程，architect 需提供多方案对比 |
+| **S（小）** | 单一功能点修改、bug 修复、配置变更等简单改动 | 2 architect + 1 coder + 1 reviewer | 精简流程（见下方 S 流程） |
+| **M（中）** | 跨模块的新功能、中等规模重构 | 2 architect + 2 coder + 1 reviewer + 1 tester | 完整流程 |
+| **L（大）** | 架构变更、新系统/子系统、跨多模块大规模改动 | 2 architect + 2 coder + 1 reviewer + 1 tester | 完整流程 |
 
 如果无法判断规模：
 - **标准模式**：用 AskUserQuestion 让用户确认
@@ -71,11 +72,17 @@ Team lead 根据需求性质评估规模，决定执行流程：
 
 跳过集成测试，不使用 worktree。
 
-**S-1. 启动 architect 和 reviewer**。Architect 阅读代码，识别技术栈和测试框架，输出设计方案。
+**S-1. 启动 architect-1、architect-2 和 reviewer**。两位 architect 各自独立阅读代码、识别技术栈和测试框架、输出设计方案。独立阶段 team lead 不让两位 architect 看到对方的方案。
 
-**S-2. Reviewer 审查方案**：reviewer 与 architect 讨论，收敛后通知 team lead。
+**S-2. 三人组会讨论**：两份方案完成后，team lead 将两份方案同时发给 architect-1、architect-2 和 reviewer，三人组会讨论：
+- 对比两份方案的异同
+- Reviewer 从需求目标一致性角度提出质疑
+- 三人讨论收敛出最终方案
+- 有分歧无法收敛时，升级到 team lead：
+  - **标准模式**：team lead 用 AskUserQuestion 交由用户决策
+  - **自主模式**：team lead 综合三方观点裁决，收尾时汇总
 
-**S-3. 用户确认**：team lead 向用户输出方案摘要，AskUserQuestion 等待确认。
+**S-3. 用户确认**：team lead 向用户输出方案摘要（含两份方案对比和组会结论），AskUserQuestion 等待确认。
 
 **S-4. 启动 coder**，传入任务详情：
 - Team lead 用 TaskCreate 创建任务并分配
@@ -97,26 +104,30 @@ Team lead 根据需求性质评估规模，决定执行流程：
 
 ## 阶段一：架构设计
 
-### 步骤 1：启动 architect 和 reviewer
+### 步骤 1：启动 architect-1、architect-2 和 reviewer
 
-Architect 开始工作：
+同时启动两位 architect 和 reviewer。两位 architect 各自独立工作：
 - 阅读项目现有代码，理解当前架构
 - 识别项目技术栈（语言、框架、构建工具、测试框架）
-- 分析需求，输出设计方案（L 规模需提供多方案对比）
+- 分析需求，独立输出设计方案（L 规模需提供多方案对比）
 
-### 步骤 2：reviewer 审查方案
+独立阶段 team lead 不让两位 architect 看到对方的方案，确保独立性。
 
-Reviewer 与 architect 讨论：
-- 审查方案与需求目标的一致性，提出质疑
-- 讨论收敛
+### 步骤 2：三人组会讨论
+
+两份方案完成后，team lead 将两份方案同时发给 architect-1、architect-2 和 reviewer，三人组会讨论：
+- 对比两份方案的技术选型、模块划分、实现路径的异同
+- Reviewer 从需求目标一致性角度审查两份方案，提出质疑
+- 一致结论直接采纳，互补发现合并，分歧点讨论收敛
 - 有分歧无法收敛时，升级到 team lead：
   - **标准模式**：team lead 用 AskUserQuestion 交由用户决策
-  - **自主模式**：采纳 architect 方案，在方案确认时附带争议说明
+  - **自主模式**：team lead 综合三方观点裁决，在方案确认时附带争议摘要和裁决理由
 
 ### 步骤 3：用户确认
 
-讨论收敛后，team lead 向用户输出：
-- 最终设计结论和目标
+组会收敛后，team lead 向用户输出：
+- 两份独立方案的核心差异对比
+- 组会收敛的最终设计结论和目标
 - 推荐方案及理由
 - 实现路径和关键决策点
 - 任何不确定事项
@@ -129,11 +140,11 @@ Reviewer 与 architect 讨论：
 
 ### 步骤 4：任务拆解
 
-Team lead 让 architect 输出任务拆解方案（含优先级和单测验收标准）。由 team lead 执行 TaskCreate 创建任务。每个任务需包含：目标、修改范围、单测验收标准（核心场景 + 边界条件）、依赖关系。
+Team lead 让 architect-1 和 architect-2 协作输出任务拆解方案（含优先级和单测验收标准）。由 team lead 执行 TaskCreate 创建任务。每个任务需包含：目标、修改范围、单测验收标准（核心场景 + 边界条件）、依赖关系。
 
 任务之间需标注依赖关系，有依赖的任务不能并行。Team lead 按优先级从高到低分配，同优先级的优先分配关键路径上的任务。
 
-**如果 architect 识别到项目没有测试基础设施**，则第一个任务必须是搭建测试环境，标记为 P0 并阻塞其他所有任务。
+**如果 architect 识别到项目没有测试基础设施**（两位 architect 任一提出即视为有效），则第一个任务必须是搭建测试环境，标记为 P0 并阻塞其他所有任务。
 
 ### 步骤 5：启动 coder 和 tester，并行实现
 
@@ -155,7 +166,7 @@ Coder 使用对应的测试框架，**先写单测再写实现**（TDD）：
 
 ### 步骤 7：编码期间的决策升级
 
-- Coder 遇到不确定的实现细节 → 直接问 architect
+- Coder 遇到不确定的实现细节 → 问 architect-1（默认联系人；如 architect-1 不确定，可转 architect-2 协商）
 - Architect 判断影响较大时 → 升级 team lead：
   - **标准模式**：AskUserQuestion 问用户
   - **自主模式**：architect 自行决策
@@ -209,9 +220,9 @@ Tester 执行集成测试，输出测试报告。
 **最大迭代轮次：3 轮。** 超出后暂停，team lead 向用户汇报当前状态，由用户决定继续、调整方向或终止。
 
 每轮迭代：
-- Architect 分析测试报告：是实现 bug 还是设计缺陷？
+- Architect-1 和 architect-2 协作分析测试报告：是实现 bug 还是设计缺陷？
 - **实现 bug**：coder 在主分支修复 → reviewer 审查 → tester 回归测试
-- **设计缺陷**：architect 提出方案调整 → reviewer 确认可行性：
+- **设计缺陷**：两位 architect 协商提出方案调整 → reviewer 确认可行性：
   - **标准模式**：AskUserQuestion 向用户确认 → coder 修复
   - **自主模式**：architect 自行调整 → coder 修复
   - 后续：coder 在主分支修复 → reviewer 审查 → tester 回归测试
@@ -250,8 +261,8 @@ Tester 执行集成测试，输出测试报告。
 
 | 异常情况 | 处理方式 |
 |---------|---------|
-| 代码编译/运行失败 | Coder 自行修复；无法修复则升级 team lead，转交 architect 分析 |
-| Reviewer 与 architect 意见冲突 | 升级 team lead。标准模式：交由用户裁决；自主模式：采纳 architect 方案 |
+| 代码编译/运行失败 | Coder 自行修复；无法修复则升级 team lead，转交 architect-1 和 architect-2 协作分析 |
+| Reviewer 与 architect 意见冲突 | 升级 team lead。标准模式：交由用户裁决；自主模式：team lead 综合三方观点裁决 |
 | 合并冲突 | 由产生冲突的 coder 解决；涉及多个 coder 的冲突由 team lead 协调 |
 
 ---
