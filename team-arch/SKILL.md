@@ -32,7 +32,7 @@ argument-hint: [--auto] [--depth=shallow|standard|deep] [--focus=module1,module2
 | `standard` | 结构 + 依赖 + 核心模块架构模式 + 数据流 |
 | `deep` | 全量分析，额外包括性能热点、安全边界、技术债务、演进建议 |
 
-使用 TeamCreate 创建 team（名称格式 `team-arch-{YYYYMMDD-HHmmss}`），你作为 team lead 按以下流程协调。
+使用 TeamCreate 创建 team（名称格式 `team-arch-{YYYYMMDD-HHmmss}`，如 `team-arch-20260308-143022`，避免多次调用冲突），你作为 team lead 按以下流程协调。
 
 ## 流程概览
 
