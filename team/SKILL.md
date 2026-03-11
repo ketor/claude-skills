@@ -27,48 +27,48 @@ argument-hint: [--auto] [--lang=zh|en] 任务描述
 
 ## 决策矩阵
 
-按**任务意图**匹配，优先匹配排在前面的规则。当多条规则同时匹配时，选择最具体的那条。
+按**任务意图**匹配，优先匹配排在前面的规则。当多条规则同时匹配时，选择最具体的那条。支持中英文混合输入。
 
 ### 开发与修复
 
-| 意图信号 | 目标 Skill | 传递参数 |
+| 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "开发""实现""新增功能""添加""创建功能""做一个" | `/team-dev` | `[--auto] [--lang]` |
-| "重构""迁移""拆分模块""合并模块""重命名""提取接口" | `/team-refactor` | `[--auto] [--scope=module\|package\|system] [--lang]` |
-| "修复 bug""debug""定位问题""排查""为什么报错""崩溃" | `/team-debug` | `[--auto] [--lang]` |
+| "开发""实现""新增功能""添加""创建功能""做一个" / "implement""add feature""build""create" | `/team-dev` | `[--auto] [--lang]` |
+| "重构""迁移""拆分模块""合并模块""重命名""提取接口" / "refactor""migrate""split""merge module""extract interface" | `/team-refactor` | `[--auto] [--scope=module\|package\|system] [--lang]` |
+| "修复 bug""debug""定位问题""排查""为什么报错""崩溃" / "fix bug""debug""troubleshoot""why error""crash" | `/team-debug` | `[--auto] [--lang]` |
 
 ### 审查与分析
 
-| 意图信号 | 目标 Skill | 传递参数 |
+| 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "review 代码""代码审查""代码质量""review PR" | `/team-review` | `[--auto] [--focus] [--lang]` |
-| "分析架构""架构评估""模块关系""依赖分析" | `/team-arch` | `[--auto] [--depth] [--focus] [--lang]` |
-| "性能优化""性能分析""慢""延迟高""OOM""内存泄漏" | `/team-perf` | `[--auto] [--focus] [--lang]` |
-| "安全审计""安全扫描""漏洞""安全检查""渗透" | `/team-security` | `[--auto] [--scope] [--lang]` |
+| "review 代码""代码审查""代码质量""review PR" / "code review""review pull request""code quality" | `/team-review` | `[--auto] [--focus] [--lang]` |
+| "分析架构""架构评估""模块关系""依赖分析" / "analyze architecture""architecture review""dependency analysis" | `/team-arch` | `[--auto] [--depth] [--focus] [--lang]` |
+| "性能优化""性能分析""慢""延迟高""OOM""内存泄漏" / "performance""optimize""slow""high latency""memory leak" | `/team-perf` | `[--auto] [--focus] [--lang]` |
+| "安全审计""安全扫描""漏洞""安全检查""渗透""安全隐患" / "security audit""vulnerability""security scan""penetration test" | `/team-security` | `[--auto] [--scope] [--lang]` |
 
 ### 设计与方案
 
-| 意图信号 | 目标 Skill | 传递参数 |
+| 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "写 RFC""技术方案""设计文档""技术设计""写方案" | `/team-rfc` | `[--auto] [--type] [--lang]` |
-| "评审方案""评审设计""review RFC""评审文档""评估可行性" | `/team-design-review` | `[--auto] [--lang]` |
-| "设计 API""API 评审""接口设计""定义接口" | `/team-api-design` | `[--auto] [--style] [--lang]` |
+| "写 RFC""技术方案""设计文档""技术设计""写方案" / "write RFC""technical proposal""design doc" | `/team-rfc` | `[--auto] [--type] [--lang]` |
+| "评审方案""评审设计""review RFC""评审文档""评估可行性" / "review proposal""review design""evaluate feasibility" | `/team-design-review` | `[--auto] [--lang]` |
+| "设计 API""API 评审""接口设计""定义接口""重新设计 API" / "design API""API review""define interface""redesign API" | `/team-api-design` | `[--auto] [--style] [--lang]` |
 
 ### 运维与发布
 
-| 意图信号 | 目标 Skill | 传递参数 |
+| 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "线上故障""生产事故""告警""服务不可用""紧急" | `/team-incident` | `[--auto] [--severity] [--lang]` |
-| "复盘""事后分析""postmortem""故障总结""经验教训" | `/team-postmortem` | `[--auto] [--lang]` |
-| "发布""上线""release""版本""changelog" | `/team-release` | `[--auto] [--type] [--from] [--lang]` |
+| "线上故障""生产事故""告警""服务不可用""紧急""生产环境...尽快" / "production outage""alert""service down""urgent""emergency" | `/team-incident` | `[--auto] [--severity] [--lang]` |
+| "复盘""事后分析""postmortem""故障总结""经验教训" / "postmortem""retrospective""lessons learned""incident review" | `/team-postmortem` | `[--auto] [--lang]` |
+| "发布""上线""release""版本""changelog" / "release""deploy""publish version""release notes" | `/team-release` | `[--auto] [--type] [--from] [--lang]` |
 
 ### 调研与文档
 
-| 意图信号 | 目标 Skill | 传递参数 |
+| 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "调研""研究""对比""技术选型""了解""分析趋势" | `/team-research` | `[--auto] [--depth] [--lang]` |
-| "入职文档""知识库""上手指南""项目文档""新人" | `/team-onboard` | `[--auto] [--target] [--lang]` |
-| "成本优化""成本分析""降本""资源利用率""GPU 利用率" | `/team-cost` | `[--auto] [--scope] [--lang]` |
+| "调研""研究""对比""技术选型""了解""分析趋势" / "research""compare""tech selection""evaluate options" | `/team-research` | `[--auto] [--depth] [--lang]` |
+| "入职文档""知识库""上手指南""项目文档""新人""改进文档""更新文档""完善文档" / "onboarding""knowledge base""getting started""improve docs""update documentation" | `/team-onboard` | `[--auto] [--target] [--lang]` |
+| "成本优化""成本分析""降本""资源利用率""GPU 利用率" / "cost optimization""cost analysis""reduce cost""resource utilization" | `/team-cost` | `[--auto] [--scope] [--lang]` |
 
 ---
 
@@ -87,9 +87,15 @@ argument-hint: [--auto] [--lang=zh|en] 任务描述
 按以下优先级匹配：
 
 1. **精确匹配**：任务描述中直接包含 skill 名称（如"用 team-perf 分析性能"）→ 直接调用
-2. **紧急优先**：包含紧急/线上/告警关键词 → 优先匹配 `/team-incident`
-3. **意图匹配**：按决策矩阵匹配最具体的规则
-4. **组合任务**：如果任务包含多个意图（如"开发完后做 review"），选择第一个意图对应的 skill，在完成后建议下一个
+2. **紧急优先**：包含紧急信号 → 优先匹配 `/team-incident`
+   - 强信号（直接路由）："紧急""线上故障""告警""服务不可用""production outage""urgent"
+   - 弱信号（需组合判断）："生产环境""尽快""ASAP" — 单独出现不足以触发，但两个弱信号组合 或 弱信号+问题描述（如"CPU跑满""挂了"）= 路由到 incident
+   - 例外：如果任务明确是**过去时态**（"昨天的故障""上周的事故"），即使包含紧急信号，也路由到 `/team-postmortem`
+3. **意图匹配**：按决策矩阵匹配最具体的规则。当对象名词比动作动词更具体时，以对象名词为准（如"review 安全隐患"→ team-security，因为"安全隐患"比"review"更具体）
+4. **多意图处理**：
+   - **顺序型**（"先...然后..."）：选第一个意图，完成后建议下一个
+   - **并列型**（"A也差，B也有问题"）：3个以上并列意图 → 降为中等置信度，用 AskUserQuestion 让用户选择优先处理哪个
+   - **主次型**（一个明显核心诉求+附带提及）：选核心意图
 
 ### 步骤 3：确认与调用
 
@@ -121,24 +127,24 @@ argument-hint: [--auto] [--lang=zh|en] 任务描述
 
 路由无法匹配时展示此表：
 
-| Skill | 一句话描述 | 典型场景 |
-|-------|-----------|---------|
-| `/team-dev` | 完整研发流程 | "帮我实现用户登录功能" |
-| `/team-debug` | 系统化 Bug 诊断 | "这个接口偶尔返回 500" |
-| `/team-perf` | 性能剖析优化 | "列表页加载太慢了" |
-| `/team-security` | 安全审计 | "检查一下这个项目的安全性" |
-| `/team-review` | 代码审查 | "review 一下这个项目的代码质量" |
-| `/team-arch` | 架构分析 | "分析一下这个项目的架构" |
-| `/team-rfc` | 技术方案撰写 | "写一个缓存方案的 RFC" |
-| `/team-design-review` | 方案评审 | "评审一下这个设计文档" |
-| `/team-api-design` | API 设计 | "设计用户管理的 API" |
-| `/team-incident` | 故障响应 | "线上订单服务挂了" |
-| `/team-postmortem` | 复盘分析 | "复盘一下昨天的故障" |
-| `/team-release` | 发布管理 | "准备发布 v2.1.0" |
-| `/team-refactor` | 重构工程 | "把这个模块拆成微服务" |
-| `/team-research` | 技术调研 | "调研 Rust vs Go 的选型" |
-| `/team-onboard` | 知识库构建 | "生成项目入职文档" |
-| `/team-cost` | 成本优化 | "分析一下 GPU 集群的使用效率" |
+| Skill | 一句话描述 | 中文示例 | English Example |
+|-------|-----------|---------|----------------|
+| `/team-dev` | 完整研发流程 | "帮我实现用户登录功能" | "implement user login" |
+| `/team-debug` | 系统化 Bug 诊断 | "这个接口偶尔返回 500" | "debug intermittent 500 errors" |
+| `/team-perf` | 性能剖析优化 | "列表页加载太慢了" | "optimize slow page load" |
+| `/team-security` | 安全审计 | "检查一下项目的安全性" | "security audit this project" |
+| `/team-review` | 代码审查 | "review 代码质量" | "review code quality" |
+| `/team-arch` | 架构分析 | "分析一下项目的架构" | "analyze the architecture" |
+| `/team-rfc` | 技术方案撰写 | "写一个缓存方案的 RFC" | "write RFC for caching" |
+| `/team-design-review` | 方案评审 | "评审一下这个设计文档" | "review this design doc" |
+| `/team-api-design` | API 设计 | "设计用户管理的 API" | "design user management API" |
+| `/team-incident` | 故障响应 | "线上订单服务挂了" | "production order service is down" |
+| `/team-postmortem` | 复盘分析 | "复盘一下昨天的故障" | "postmortem on yesterday's outage" |
+| `/team-release` | 发布管理 | "准备发布 v2.1.0" | "prepare release v2.1.0" |
+| `/team-refactor` | 重构工程 | "把这个模块拆成微服务" | "split this into microservices" |
+| `/team-research` | 技术调研 | "调研 Rust vs Go 的选型" | "research Rust vs Go" |
+| `/team-onboard` | 知识库构建 | "生成项目入职文档" | "generate onboarding docs" |
+| `/team-cost` | 成本优化 | "分析 GPU 集群使用效率" | "analyze GPU cluster cost" |
 
 ---
 
@@ -156,6 +162,9 @@ argument-hint: [--auto] [--lang=zh|en] 任务描述
 | "调研 + 方案" | `/team-research` → `/team-rfc` |
 | "开发 + 发布" | `/team-dev` → `/team-release` |
 | "性能分析 + 优化代码" | `/team-perf`（内含优化实施） |
+| "审查 + 安全 + 性能" | AskUserQuestion 让用户选优先级 |
+| "API设计 + 开发实现" | `/team-api-design` → `/team-dev` |
+| "安全审计 + 性能优化" | `/team-security` → `/team-perf` |
 
 路由只执行第一个 skill。第一个 skill 完成后，其跨团队衔接建议会自然引导到下一个。
 
