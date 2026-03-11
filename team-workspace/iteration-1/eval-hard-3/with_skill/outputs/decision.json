@@ -1,0 +1,7 @@
+{
+  "input": "我想重新设计一下任务调度的API，现有的太难用了",
+  "matched_skill": "team-api-design",
+  "confidence": "high",
+  "reasoning": "The user's intent is to redesign a task scheduling API. The key signals are: (1) '设计...API' directly matches the intent signal '设计 API' / '接口设计' in the decision matrix for /team-api-design; (2) '重新设计' emphasizes design rather than refactoring — the user is focused on the API interface ('太难用了' = hard to use), not on restructuring internal code modules; (3) While '重新' could hint at refactoring, the object is explicitly 'API' and the complaint is about usability, which is squarely an API design concern.",
+  "alternatives": ["team-refactor"]
+}

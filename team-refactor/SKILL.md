@@ -1,7 +1,6 @@
 ---
 name: team-refactor
 description: 启动一个重构工程团队（analyzer/planner×2/coder/reviewer/tester），按阶段协作完成影响分析、双路方案设计、分批原子重构、持续验证和收尾。使用方式：/team-refactor [--auto] [--scope=module|package|system] [--lang=zh|en] 重构目标描述
-disable-model-invocation: true
 argument-hint: [--auto] [--scope=module|package|system] [--lang=zh|en] 重构目标描述
 ---
 

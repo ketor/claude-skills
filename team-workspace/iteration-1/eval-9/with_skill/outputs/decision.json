@@ -1,0 +1,7 @@
+{
+  "input": "昨天凌晨GPU集群宕机2小时的事故做个复盘",
+  "matched_skill": "team-postmortem",
+  "confidence": "high",
+  "reasoning": "The core action verb is '复盘' (postmortem/retrospective), which is a direct match for /team-postmortem's intent signals: '复盘/事后分析/postmortem/故障总结/经验教训'. The task describes a past incident ('昨天凌晨' = last night) that has already been resolved, and the user wants to conduct a retrospective analysis — not respond to an active incident. While '事故' and 'GPU集群宕机' relate to incident vocabulary, the absence of urgency signals and the retrospective framing clearly point to postmortem rather than incident response.",
+  "alternatives": ["team-incident"]
+}

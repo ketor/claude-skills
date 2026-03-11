@@ -1,7 +1,6 @@
 ---
 name: team-postmortem
 description: 启动一个复盘分析团队（chronicler/analyzer×2/reviewer/writer），对故障/事件进行系统化复盘，重建时间线，双路独立根因分析（技术+流程），审查改进措施可行性，输出标准化复盘报告。使用方式：/team-postmortem [--auto] [--lang=zh|en] 故障/事件描述或incident报告路径
-disable-model-invocation: true
 argument-hint: [--auto] [--lang=zh|en] 故障/事件描述或incident报告路径
 ---
 

@@ -1,0 +1,8 @@
+{
+  "input": "这个模块的代码太烂了，性能也差，安全也有问题，需要全面搞一下",
+  "matched_skill": "team-review",
+  "confidence": "medium",
+  "reasoning": "The input contains 3 parallel intents: (1) '代码太烂了' maps to code quality review (team-review) or refactoring (team-refactor), (2) '性能也差' maps to performance optimization (team-perf), (3) '安全也有问题' maps to security audit (team-security). Per the routing rules for parallel multi-intent (并列型) with 3+ intents, confidence is downgraded to medium and the user should be asked to choose which to prioritize. Among the candidates, team-review is the best starting point because understanding overall code quality issues first would inform both performance and security work. However, this decision requires user confirmation.",
+  "alternatives": ["team-perf", "team-security", "team-refactor"],
+  "would_ask_user": true
+}

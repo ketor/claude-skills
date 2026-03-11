@@ -1,7 +1,6 @@
 ---
 name: team-onboard
 description: 启动一个知识库构建团队（scanner/analyst×2/reviewer/writer），通过项目扫描+双路独立知识提取+合并审查+文档生成，输出高质量入职指南、架构概览、开发手册、FAQ 和术语表。使用方式：/team-onboard [--auto] [--target=newcomer|senior|all] [--lang=zh|en] 项目路径或描述
-disable-model-invocation: true
 argument-hint: [--auto] [--target=newcomer|senior|all] [--lang=zh|en] 项目路径或描述
 ---
 

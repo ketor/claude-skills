@@ -1,7 +1,6 @@
 ---
 name: team-api-design
 description: 启动一个 API 设计团队（researcher/designer×2/reviewer/documenter），通过需求分析+双设计师独立设计+专家评审+文档生成，输出高质量 API 定义和标准化文档（OpenAPI/Protobuf/GraphQL Schema）。使用方式：/team-api-design [--auto] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
-disable-model-invocation: true
 argument-hint: [--auto] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
 ---
 

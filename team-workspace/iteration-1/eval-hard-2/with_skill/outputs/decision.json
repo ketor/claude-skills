@@ -1,0 +1,7 @@
+{
+  "input": "帮我看看为什么这个服务越跑越慢，是不是有内存泄漏",
+  "matched_skill": "team-perf",
+  "confidence": "high",
+  "reasoning": "用户描述包含两个强匹配信号：'越跑越慢'对应决策矩阵中的'慢'，'内存泄漏'直接命中'内存泄漏'关键词。两者均指向 /team-perf（性能剖析优化）。任务不含紧急/线上/告警等信号，无需优先匹配 /team-incident。也不是纯粹的 bug 修复（team-debug），因为用户关注的是性能退化和内存问题，属于性能分析范畴。",
+  "alternatives": ["team-debug", "team-incident"]
+}

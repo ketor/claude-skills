@@ -1,7 +1,6 @@
 ---
 name: team-rfc
 description: 启动一个技术方案设计团队（researcher/architect×2/reviewer/writer），通过技术调研、双路独立方案设计、三人评审组会、方案收敛，输出标准化 RFC/技术设计文档。使用方式：/team-rfc [--auto] [--type=feature|refactor|migration|integration] [--lang=zh|en] 技术需求描述
-disable-model-invocation: true
 argument-hint: [--auto] [--type=feature|refactor|migration|integration] [--lang=zh|en] 技术需求描述
 ---
 

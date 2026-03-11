@@ -1,0 +1,7 @@
+{
+  "input": "帮我给调度模块加一个优先级队列功能",
+  "matched_skill": "team-dev",
+  "confidence": "high",
+  "reasoning": "任务描述中的关键动词是'加'（添加），目标是'优先级队列功能'（一个新功能）。这与决策矩阵中'新增功能/添加/创建功能'的意图信号精确匹配，对应目标 skill 为 /team-dev。没有紧急信号，没有重构/审查/设计等其他意图，属于纯粹的功能开发任务。",
+  "alternatives": ["team-rfc", "team-arch"]
+}

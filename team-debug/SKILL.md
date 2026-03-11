@@ -1,7 +1,6 @@
 ---
 name: team-debug
 description: 启动一个系统化故障诊断团队（reproducer/analyzer×2/fixer/verifier），对 bug/异常行为进行双路独立根因分析、TDD 修复和全量验证。使用方式：/team-debug [--auto] [--lang=zh|en] bug描述或issue链接
-disable-model-invocation: true
 argument-hint: [--auto] [--lang=zh|en] bug描述或issue链接
 ---
 

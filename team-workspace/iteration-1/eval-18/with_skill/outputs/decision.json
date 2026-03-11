@@ -1,0 +1,7 @@
+{
+  "input": "用户的训练任务跑着跑着就被kill了，也不报错，帮我看看为什么",
+  "matched_skill": "team-debug",
+  "confidence": "high",
+  "reasoning": "用户的核心意图是'帮我看看为什么'——排查训练任务被kill的原因。这是一个典型的问题诊断/排查场景，与决策矩阵中 team-debug 的意图信号高度匹配：'定位问题''排查''为什么报错''崩溃'。虽然被kill可能涉及OOM等性能问题（team-perf的信号），但用户尚未定位到具体原因，当前阶段的核心需求是诊断和排查，属于debug范畴。team-debug完成诊断后，如果发现是性能/资源问题，可以自然衔接到team-perf进行优化。",
+  "alternatives": ["team-perf"]
+}

@@ -1,7 +1,6 @@
 ---
 name: team-release
 description: 启动一个发布管理团队（scanner/validator×2/writer/checker），按阶段协作完成变更扫描、双路验证、风险评估、Changelog 生成和发布前检查。使用方式：/team-release [--auto] [--type=major|minor|patch|hotfix] [--from=tag/commit] [--lang=zh|en] 发布描述或版本号
-disable-model-invocation: true
 argument-hint: [--auto] [--type=major|minor|patch|hotfix] [--from=tag/commit] [--lang=zh|en] 发布描述或版本号
 ---
 

@@ -1,7 +1,6 @@
 ---
 name: team-research
 description: 启动一个调研团队（researcher×2/analyst/critic/writer），通过双研究员两轮调研（探索+深化）、分析合并、对抗验证，输出高置信度结构化调研报告。使用方式：/team-research [--auto] [--depth=quick|standard|deep] [--lang=zh|en] 调研主题
-disable-model-invocation: true
 argument-hint: [--auto] [--depth=quick|standard|deep] [--lang=zh|en] 调研主题
 ---
 

@@ -1,0 +1,7 @@
+{
+  "input": "API网关的响应时间从50ms涨到了800ms，用户开始抱怨了",
+  "matched_skill": "team-perf",
+  "confidence": "high",
+  "reasoning": "The input describes a classic performance degradation scenario: API gateway response time increased 16x (from 50ms to 800ms). This directly matches the /team-perf intent signals '性能分析', '慢', '延迟高'. The core problem is latency/performance, not a service outage or bug. While users are complaining, the language does not use explicit emergency signals like '紧急', '线上故障', '告警', or '服务不可用' that would trigger /team-incident priority routing.",
+  "alternatives": ["team-incident", "team-debug"]
+}

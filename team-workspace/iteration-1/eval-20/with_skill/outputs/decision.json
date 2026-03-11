@@ -1,0 +1,7 @@
+{
+  "input": "帮我看看这个服务的代码写得怎么样，有没有什么可以改进的",
+  "matched_skill": "team-review",
+  "confidence": "high",
+  "reasoning": "用户意图是审查代码质量并寻找改进点。'看看代码写得怎么样'直接对应代码审查/代码质量评估，'有没有什么可以改进的'进一步确认了 review 意图。决策矩阵中 team-review 的意图信号包括'代码审查'和'代码质量'，与用户描述高度匹配。",
+  "alternatives": ["team-arch", "team-perf"]
+}

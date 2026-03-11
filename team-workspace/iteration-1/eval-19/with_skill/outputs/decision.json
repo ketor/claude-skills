@@ -1,0 +1,7 @@
+{
+  "input": "--auto 先调研一下业界主流的GPU虚拟化方案，然后写一个我们自己的技术方案",
+  "matched_skill": "team-research",
+  "confidence": "high",
+  "reasoning": "This is a combination task ('调研 + 方案') with two clear intents: (1) '调研' (research) matching team-research, and (2) '写技术方案' (write technical proposal) matching team-rfc. Per the combination task table, '调研 + 方案' maps to '/team-research → /team-rfc'. The routing rule states '路由只执行第一个 skill' (only execute the first skill), so team-research is selected first. The primary action verb '先调研' (first research) also confirms research should come first. Upon completion, team-research's cross-team handoff suggestions will naturally guide to team-rfc for writing the technical proposal.",
+  "alternatives": ["team-rfc"]
+}

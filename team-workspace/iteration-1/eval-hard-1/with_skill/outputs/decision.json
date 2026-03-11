@@ -1,0 +1,7 @@
+{
+  "input": "这个模块的代码太烂了，性能也差，安全也有问题，需要全面搞一下",
+  "matched_skill": "team-review",
+  "confidence": "medium",
+  "reasoning": "任务包含多个意图：(1)\"代码太烂了\"指向代码质量问题，匹配 team-review；(2)\"性能也差\"匹配 team-perf；(3)\"安全也有问题\"匹配 team-security。三个意图同时存在，属于多候选情况，置信度为中等。按组合任务处理原则，应先从代码审查(team-review)入手，全面评估代码质量后，再根据审查结果分别用 team-perf 做性能优化、team-security 做安全审计。team-review 的\"代码质量\"意图信号与\"代码太烂了\"最为直接匹配，且代码审查通常是发现问题的起点，适合作为第一步。按照路由规则，多个候选时应通过 AskUserQuestion 让用户在 team-review、team-perf、team-security 三个候选中选择。",
+  "alternatives": ["team-perf", "team-security"]
+}

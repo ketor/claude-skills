@@ -1,7 +1,6 @@
 ---
 name: team-dev
 description: 启动一个完整的研发团队（architect×2/coder×2/reviewer/tester），按阶段协作完成需求澄清、架构设计、风险优先编码、结构化审查和集成测试。使用方式：/team-dev [--auto] [--lang=zh|en] 你的需求描述
-disable-model-invocation: true
 argument-hint: [--auto] [--lang=zh|en] 需求描述
 ---
 

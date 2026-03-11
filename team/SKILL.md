@@ -1,7 +1,6 @@
 ---
 name: team
 description: 智能路由——根据任务描述自动选择最合适的 team-* skill 并调用。无需记忆 16 个 skill 名称，只需 /team 你的任务。使用方式：/team [--auto] [--lang=zh|en] 任务描述
-disable-model-invocation: true
 argument-hint: [--auto] [--lang=zh|en] 任务描述
 ---
 

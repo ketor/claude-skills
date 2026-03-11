@@ -1,0 +1,8 @@
+{
+  "input": "help me debug why our training jobs keep getting OOM killed on the A100 nodes",
+  "matched_skill": "team-perf",
+  "confidence": "high",
+  "reasoning": "The input contains two competing signals: 'debug' maps to team-debug, and 'OOM' maps to team-perf. Per the routing rule 'when the object noun is more specific than the action verb, prioritize the object noun', 'OOM' (explicitly listed in the team-perf decision matrix under 'OOM/memory leak/performance') is more specific than the generic action 'debug'. The core problem is an out-of-memory condition on GPU nodes, which is fundamentally a performance/resource analysis problem. team-perf is designed for memory profiling, resource analysis, and optimization -- exactly what is needed to diagnose and resolve OOM issues in training workloads.",
+  "alternatives": ["team-debug", "team-cost"],
+  "would_ask_user": true
+}

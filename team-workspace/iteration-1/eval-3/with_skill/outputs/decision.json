@@ -1,0 +1,7 @@
+{
+  "input": "--auto 紧急！生产环境K8s集群的调度服务挂了，大量任务pending",
+  "matched_skill": "team-incident",
+  "confidence": "high",
+  "reasoning": "Task contains multiple high-priority urgency signals: '紧急' (urgent) and '生产环境' (production environment), plus '挂了' (service down) and '服务不可用' semantics. Per the routing rules, urgency keywords trigger priority rule 2 which directly maps to /team-incident. The decision matrix row '线上故障/生产事故/告警/服务不可用/紧急' is an exact match. This is a clear production incident requiring immediate response.",
+  "alternatives": ["team-debug", "team-perf"]
+}

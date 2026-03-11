@@ -1,0 +1,8 @@
+{
+  "input": "客户说我们的SDK不好用，帮我改进一下文档和示例代码",
+  "matched_skill": "team-onboard",
+  "confidence": "high",
+  "reasoning": "任务核心意图是「改进文档和示例代码」。决策矩阵中「调研与文档」类别明确列出「改进文档」「更新文档」「完善文档」/ 「improve docs」「update documentation」作为 team-onboard 的意图信号，与用户输入高度匹配。虽然任务提到了「SDK不好用」这一客户反馈背景，但用户的实际请求动作是改进文档和示例代码，属于文档/知识库完善范畴，而非 debug（没有具体 bug）、dev（没有要求新增功能）或 api-design（没有要求重新设计 API 接口）。",
+  "alternatives": ["team-dev", "team-api-design"],
+  "would_ask_user": true
+}

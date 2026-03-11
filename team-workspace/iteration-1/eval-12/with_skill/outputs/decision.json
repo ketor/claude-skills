@@ -1,0 +1,7 @@
+{
+  "input": "评审一下张三提交的分布式存储方案",
+  "matched_skill": "team-design-review",
+  "confidence": "high",
+  "reasoning": "The input contains '评审' (review) + '方案' (proposal/design), which directly matches the intent signals for /team-design-review: '评审方案', '评审设计', '评审文档'. The task is about reviewing a submitted design proposal (分布式存储方案), not writing one (which would be team-rfc) or reviewing code (which would be team-review). The combination '评审...方案' is an exact match for the design review skill.",
+  "alternatives": ["team-review", "team-arch"]
+}

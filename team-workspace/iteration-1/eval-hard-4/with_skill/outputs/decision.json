@@ -1,0 +1,7 @@
+{
+  "input": "客户说我们的SDK不好用，帮我改进一下文档和示例代码",
+  "matched_skill": "team-dev",
+  "confidence": "medium",
+  "reasoning": "The task asks to '改进' (improve) documentation and example code for an SDK based on customer feedback. The primary action verb '改进' (improve/modify) combined with '帮我...一下' (help me do) indicates an implementation/development task -- the user wants actual changes made to documentation and example code. This maps to /team-dev ('开发/实现/新增功能' intent signals). However, /team-onboard is also a strong candidate since the focus objects are '文档' (documentation) and '示例代码' (example code), which align with onboarding/knowledge-base documentation scenarios. The deciding factor is that the user wants to actively modify and improve existing artifacts (a development activity) rather than generate new onboarding documentation from scratch.",
+  "alternatives": ["team-onboard", "team-api-design"]
+}

@@ -1,7 +1,6 @@
 ---
 name: team-security
 description: 启动一个安全审计团队（scanner/auditor×2/analyst/reporter），通过自动化扫描+双路独立手工审计+合并分析+报告生成，对项目进行全面安全审计、漏洞评估、风险定级和修复建议。使用方式：/team-security [--auto] [--scope=full,api,auth,data,deps,infra] [--lang=zh|en] 项目路径或安全审计需求
-disable-model-invocation: true
 argument-hint: [--auto] [--scope=full,api,auth,data,deps,infra] [--lang=zh|en] 项目路径或安全审计需求
 ---
 

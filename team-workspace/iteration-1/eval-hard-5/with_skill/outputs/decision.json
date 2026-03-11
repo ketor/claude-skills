@@ -1,0 +1,7 @@
+{
+  "input": "生产环境数据库CPU跑满了，但服务还没挂，需要尽快处理",
+  "matched_skill": "team-incident",
+  "confidence": "high",
+  "reasoning": "The input contains strong urgency signals: '生产环境' (production environment) and '尽快' (ASAP). Per the skill's routing priority rules, urgency-first matching takes precedence — tasks containing '紧急/线上/生产/告警' keywords should prioritize /team-incident. The decision matrix explicitly lists '线上故障', '生产事故', '告警', '服务不可用', '紧急' as intent signals for /team-incident. Although 'CPU跑满' (CPU maxed out) could also match /team-perf (performance analysis), the urgency-first rule overrides this since it is an active production issue requiring immediate incident response, not a routine performance optimization exercise.",
+  "alternatives": ["team-perf"]
+}

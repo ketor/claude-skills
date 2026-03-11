@@ -1,7 +1,6 @@
 ---
 name: team-design-review
 description: 启动一个方案评审团队（reader-1/reader-2/challenger/analyst/summarizer），对技术方案/RFC/设计文档进行双路独立评审 + 魔鬼代言人挑战 + 结构化评分，输出评审报告和判定结论（Approved/Conditionally Approved/Rejected）。使用方式：/team-design-review [--auto] [--lang=zh|en] 设计文档路径或URL
-disable-model-invocation: true
 argument-hint: [--auto] [--lang=zh|en] 设计文档路径或URL
 ---
 

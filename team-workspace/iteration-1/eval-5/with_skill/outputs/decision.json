@@ -1,0 +1,7 @@
+{
+  "input": "我们的认证服务代码写了3年了，review一下有没有安全隐患",
+  "matched_skill": "team-security",
+  "confidence": "high",
+  "reasoning": "The user's core concern is '安全隐患' (security vulnerabilities/risks) in their authentication service code. Although the word 'review' appears, it is used colloquially to mean 'check/audit' rather than indicating a general code quality review. The subject of the review is explicitly security risks ('安全隐患'), and the target is authentication code — a classic security audit scenario. This directly matches the decision matrix entry: '安全审计/安全扫描/漏洞/安全检查' → /team-security. The mention of '写了3年了' (written 3 years ago) further reinforces that the user is concerned about accumulated security debt, not general code quality.",
+  "alternatives": ["team-review"]
+}

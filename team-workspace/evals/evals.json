@@ -1,0 +1,165 @@
+{
+  "skill_name": "team",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "/team 帮我给调度模块加一个优先级队列功能",
+      "expected_output": "Routes to /team-dev — '加一个...功能' is a clear development task",
+      "expected_skill": "team-dev",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "/team 用户反馈说GPU节点偶尔分配失败，帮我排查一下",
+      "expected_output": "Routes to /team-debug — '排查' + problem description = debug task",
+      "expected_skill": "team-debug",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "/team --auto 紧急！生产环境K8s集群的调度服务挂了，大量任务pending",
+      "expected_output": "Routes to /team-incident — '紧急' + '生产环境' + service down = incident, auto mode passed through",
+      "expected_skill": "team-incident",
+      "category": "urgent-priority",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "/team API网关的响应时间从50ms涨到了800ms，用户开始抱怨了",
+      "expected_output": "Routes to /team-perf — latency spike is a performance issue, not an incident (no '紧急/线上故障/服务不可用' signals)",
+      "expected_skill": "team-perf",
+      "category": "edge-case",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "/team 我们的认证服务代码写了3年了，review一下有没有安全隐患",
+      "expected_output": "Routes to /team-security — 'review' appears but '安全隐患' makes this a security audit, not a code review",
+      "expected_skill": "team-security",
+      "category": "edge-case",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "/team --lang=en 调研一下 Kubernetes vs Nomad 作为我们新的任务调度引擎的选型",
+      "expected_output": "Routes to /team-research — '调研' + '选型' = research task, --lang=en passed through",
+      "expected_skill": "team-research",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "/team 把计费模块从单体服务拆出来做成独立微服务",
+      "expected_output": "Routes to /team-refactor — '拆出来' = refactoring/splitting module",
+      "expected_skill": "team-refactor",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "/team 写一个关于引入 Ray 作为分布式计算框架的技术方案",
+      "expected_output": "Routes to /team-rfc — '写一个...技术方案' = RFC writing",
+      "expected_skill": "team-rfc",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "/team 昨天凌晨GPU集群宕机2小时的事故做个复盘",
+      "expected_output": "Routes to /team-postmortem — '复盘' + past tense incident = postmortem, NOT incident (it's over)",
+      "expected_skill": "team-postmortem",
+      "category": "edge-case",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "/team 新来了3个后端工程师，帮他们生成项目上手文档",
+      "expected_output": "Routes to /team-onboard — '新来了...工程师' + '上手文档' = onboarding",
+      "expected_skill": "team-onboard",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "/team 分析一下我们A100集群的GPU利用率，看看有没有降本空间",
+      "expected_output": "Routes to /team-cost — 'GPU利用率' + '降本' = cost optimization",
+      "expected_skill": "team-cost",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "/team 评审一下张三提交的分布式存储方案",
+      "expected_output": "Routes to /team-design-review — '评审...方案' = design review, NOT code review",
+      "expected_skill": "team-design-review",
+      "category": "edge-case",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "/team 设计一套GPU资源管理的RESTful API",
+      "expected_output": "Routes to /team-api-design — '设计...API' = API design",
+      "expected_skill": "team-api-design",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "/team 准备发布 v3.2.0，整理changelog和release notes",
+      "expected_output": "Routes to /team-release — '发布' + version + 'changelog' = release",
+      "expected_skill": "team-release",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "/team review一下最近提交的PR代码质量怎么样",
+      "expected_output": "Routes to /team-review — 'review PR' + '代码质量' = code review",
+      "expected_skill": "team-review",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "/team 线上告警！存储服务OOM了，但还没完全挂",
+      "expected_output": "Routes to /team-incident — '线上告警' + 'OOM' triggers emergency priority, even though service isn't fully down. OOM could also match perf, but '线上告警' takes priority",
+      "expected_skill": "team-incident",
+      "category": "ambiguous-urgent",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "/team 分析一下整个平台的微服务架构，看看哪些地方耦合太重",
+      "expected_output": "Routes to /team-arch — '分析...架构' + '耦合' = architecture analysis",
+      "expected_skill": "team-arch",
+      "category": "clear-match",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "/team 用户的训练任务跑着跑着就被kill了，也不报错，帮我看看为什么",
+      "expected_output": "Routes to /team-debug — mysterious process death + '帮我看看为什么' = debugging. Could be OOM but no performance optimization intent",
+      "expected_skill": "team-debug",
+      "category": "edge-case",
+      "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "/team --auto 先调研一下业界主流的GPU虚拟化方案，然后写一个我们自己的技术方案",
+      "expected_output": "Routes to /team-research FIRST (combo task: research → rfc), suggests team-rfc as follow-up",
+      "expected_skill": "team-research",
+      "category": "combo-task",
+      "files": []
+    },
+    {
+      "id": 20,
+      "prompt": "/team 帮我看看这个服务的代码写得怎么样，有没有什么可以改进的",
+      "expected_output": "Routes to /team-review — '看看代码写得怎么样' + '改进' = code review (general quality review, not specific bug or security issue)",
+      "expected_skill": "team-review",
+      "category": "edge-case",
+      "files": []
+    }
+  ]
+}

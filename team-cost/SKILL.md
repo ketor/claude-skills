@@ -1,7 +1,6 @@
 ---
 name: team-cost
 description: 启动一个成本优化分析团队（scanner/analyzer×2/analyst/reporter），通过基础设施扫描+双路独立分析（infra+code）+合并量化+ROI 评估，输出结构化成本优化报告和实施路线图。使用方式：/team-cost [--auto] [--scope=infra|code|full] [--lang=zh|en] 成本优化目标或项目路径
-disable-model-invocation: true
 argument-hint: [--auto] [--scope=infra|code|full] [--lang=zh|en] 成本优化目标或项目路径
 ---
 

@@ -1,0 +1,7 @@
+{
+  "input": "线上告警！存储服务OOM了，但还没完全挂",
+  "matched_skill": "team-incident",
+  "confidence": "high",
+  "reasoning": "输入包含明确的紧急信号关键词'线上'和'告警'，根据路由优先级规则第2条（紧急优先），包含紧急/线上/告警关键词时优先匹配 /team-incident。虽然'OOM'也是 team-perf 的意图信号，但这是一个正在发生的线上故障场景（服务OOM且尚未完全宕机），属于故障响应范畴而非性能分析。决策矩阵中 team-incident 的意图信号'线上故障、告警、服务不可用'与本场景高度吻合。",
+  "alternatives": ["team-perf"]
+}

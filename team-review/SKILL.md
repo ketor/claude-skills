@@ -1,7 +1,6 @@
 ---
 name: team-review
 description: 启动一个审查团队（scanner/reviewer×2/fixer/tester），通过自动扫描+双维度独立审查+根因分组修复，对已有项目进行全面 review 并迭代改进。最多 5 轮，每轮评分，reviewer 满意即可提前结束。使用方式：/team-review [--auto] [--focus=area1,area2] [--lang=zh|en] 项目路径或描述
-disable-model-invocation: true
 argument-hint: [--auto] [--focus=quality,security,testing,...] [--lang=zh|en] 项目路径或需求描述
 ---
 
