@@ -1,11 +1,12 @@
 ---
 name: team-api-design
-description: 启动一个 API 设计团队（researcher/designer×2/reviewer/documenter），通过需求分析+双设计师独立设计+专家评审+文档生成，输出高质量 API 定义和标准化文档（OpenAPI/Protobuf/GraphQL Schema）。使用方式：/team-api-design [--auto] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
-argument-hint: [--auto] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
+description: 启动一个 API 设计团队（researcher/designer×2/reviewer/documenter），通过需求分析+双设计师独立设计+专家评审+文档生成，输出高质量 API 定义和标准化文档（OpenAPI/Protobuf/GraphQL Schema）。使用方式：/team-api-design [--auto] [--once] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
+argument-hint: [--auto] [--once] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：
-- `--auto`：自主模式（减少用户确认）
+- `--auto`：完全自主模式（不询问用户任何问题，全程自动决策）
+- `--once`：单轮确认模式（将所有需要确认的问题合并为一轮提问，确认后全程自动执行）
 - `--style=rest|grpc|graphql`：API 风格（默认 `rest`）
 - `--lang=zh|en`：输出语言（默认 `zh` 中文）
 
@@ -14,15 +15,18 @@ argument-hint: [--auto] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描
 | 模式 | 用户确认范围 | 条件节点处理 |
 |------|-------------|-------------|
 | **标准模式**（默认） | 需求确认 + 设计分歧仲裁 + 评审结果确认 + 最终文档确认 | 正常询问用户 |
-| **自主模式**（`--auto`） | 仅最终文档确认 | 自动决策 + 收尾汇总 |
+| **单轮确认模式**（`--once`） | 仅最终文档确认 | 自动决策 + 收尾汇总 |
+| **完全自主模式**（`--auto`） | 不询问用户 | 全部自动决策，收尾汇总所有决策 |
 
-自主模式下条件节点自动决策规则：
+单轮确认模式下条件节点自动决策规则：
 - **API 风格不确定** → team lead 根据项目特征自行判断，在最终文档中说明
 - **两位 designer 分歧** → reviewer 标注分歧，team lead 综合论证后裁决，收尾时汇总
 - **分歧超过 50%** → **不可跳过，必须暂停问用户**（熔断机制）
 - **reviewer 否决设计** → **不可跳过，必须暂停问用户**（熔断机制）
 - **现有 API 存在兼容性约束** → researcher 识别约束条件，designer 在设计中保持兼容
 - **`--style` 参数处理**：如果用户指定了 `--style`，所有设计和文档按指定风格输出；未指定时 team lead 根据项目技术栈推断
+
+完全自主模式下：所有节点均自动决策，不询问用户。仅熔断机制（分歧超过 50%、reviewer 否决设计）仍然生效，触发时必须暂停。
 
 使用 TeamCreate 创建 team（名称格式 `team-api-design-{YYYYMMDD-HHmmss}`，如 `team-api-design-20260308-143022`，避免多次调用冲突），你作为 team lead 按以下流程协调。
 
@@ -77,7 +81,8 @@ Team lead 根据 `--style` 参数或项目特征确定 API 风格：
 | 用户指定 `--style` | 按指定风格 |
 
 **标准模式**：向用户展示需求摘要 + 风格建议，AskUserQuestion 确认
-**自主模式**：team lead 自行决定，收尾汇总时说明
+**单轮确认模式**：team lead 自行决定，收尾汇总时说明
+**完全自主模式**：自动决策，不询问用户
 
 ---
 
@@ -252,7 +257,8 @@ Reviewer 输出**评审报告**，包含：
 - 需要修改某些接口
 - 需要增补某些功能
 
-**自主模式**：team lead 根据评审结果自行推进，收尾时汇总决策
+**单轮确认模式**：team lead 根据评审结果自行推进，收尾时汇总决策
+**完全自主模式**：自动决策，不询问用户
 
 ---
 
@@ -356,7 +362,7 @@ Documenter 同时生成以下附录，附在文档末尾：
 | [描述] | [方案] | [方案] | [结论] | [理由] |
 ```
 
-**附录 B: 自主决策汇总**（仅 `--auto` 模式时生成）：
+**附录 B: 自主决策汇总**（仅 `--auto` 或 `--once` 模式时生成）：
 ```markdown
 ## 附录 B: 自主决策汇总
 
@@ -382,7 +388,8 @@ AskUserQuestion 确认：
 - 需要补充某些接口
 - 需要调整某些定义
 
-**自主模式**：必须经用户确认。
+**单轮确认模式**：必须经用户确认。
+**完全自主模式**：自动决策，不询问用户，收尾时汇总。
 
 ---
 
@@ -405,7 +412,7 @@ Team lead 按 `--lang` 指定的语言向用户输出：
 - 评审结果（总分、各维度得分）
 - 共识度和设计分歧处理情况
 - 文档保存位置和文件清单
-- **（自主模式）自动决策汇总**：列出所有自动决策的节点、决策内容和理由
+- **（单轮确认模式/完全自主模式）自动决策汇总**：列出所有自动决策的节点、决策内容和理由
 
 ### 步骤 16.5：跨团队衔接建议（可选）
 

@@ -1,11 +1,12 @@
 ---
 name: team
-description: 智能路由——根据任务描述自动选择最合适的 team-* skill 并调用。无需记忆 16 个 skill 名称，只需 /team 你的任务。使用方式：/team [--auto] [--lang=zh|en] 任务描述
-argument-hint: [--auto] [--lang=zh|en] 任务描述
+description: 智能路由——根据任务描述自动选择最合适的 team-* skill 并调用。无需记忆 16 个 skill 名称，只需 /team 你的任务。使用方式：/team [--auto] [--once] [--lang=zh|en] 任务描述
+argument-hint: [--auto] [--once] [--lang=zh|en] 任务描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：
-- `--auto`：传递给目标 skill 的自主模式标志
+- `--auto`：传递给目标 skill 的完全自主模式标志（不询问用户任何问题）
+- `--once`：传递给目标 skill 的单轮确认模式标志（所有问题合并为一轮提问，之后全程自动执行）
 - `--lang=zh|en`：传递给目标 skill 的输出语言标志
 
 解析后保留完整的任务描述（含未识别的参数，如 `--focus`、`--depth` 等，一并传递给目标 skill）。
@@ -32,42 +33,42 @@ argument-hint: [--auto] [--lang=zh|en] 任务描述
 
 | 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "开发""实现""新增功能""添加""创建功能""做一个" / "implement""add feature""build""create" | `/team-dev` | `[--auto] [--lang]` |
-| "重构""迁移""拆分模块""合并模块""重命名""提取接口" / "refactor""migrate""split""merge module""extract interface" | `/team-refactor` | `[--auto] [--scope=module\|package\|system] [--lang]` |
-| "修复 bug""debug""定位问题""排查""为什么报错""崩溃" / "fix bug""debug""troubleshoot""why error""crash" | `/team-debug` | `[--auto] [--lang]` |
+| "开发""实现""新增功能""添加""创建功能""做一个" / "implement""add feature""build""create" | `/team-dev` | `[--auto] [--once] [--lang]` |
+| "重构""迁移""拆分模块""合并模块""重命名""提取接口" / "refactor""migrate""split""merge module""extract interface" | `/team-refactor` | `[--auto] [--once] [--scope=module\|package\|system] [--lang]` |
+| "修复 bug""debug""定位问题""排查""为什么报错""崩溃" / "fix bug""debug""troubleshoot""why error""crash" | `/team-debug` | `[--auto] [--once] [--lang]` |
 
 ### 审查与分析
 
 | 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "review 代码""代码审查""代码质量""review PR" / "code review""review pull request""code quality" | `/team-review` | `[--auto] [--focus] [--lang]` |
-| "分析架构""架构评估""模块关系""依赖分析" / "analyze architecture""architecture review""dependency analysis" | `/team-arch` | `[--auto] [--depth] [--focus] [--lang]` |
-| "性能优化""性能分析""慢""延迟高""OOM""内存泄漏" / "performance""optimize""slow""high latency""memory leak" | `/team-perf` | `[--auto] [--focus] [--lang]` |
-| "安全审计""安全扫描""漏洞""安全检查""渗透""安全隐患" / "security audit""vulnerability""security scan""penetration test" | `/team-security` | `[--auto] [--scope] [--lang]` |
+| "review 代码""代码审查""代码质量""review PR" / "code review""review pull request""code quality" | `/team-review` | `[--auto] [--once] [--focus] [--lang]` |
+| "分析架构""架构评估""模块关系""依赖分析" / "analyze architecture""architecture review""dependency analysis" | `/team-arch` | `[--auto] [--once] [--depth] [--focus] [--lang]` |
+| "性能优化""性能分析""慢""延迟高""OOM""内存泄漏" / "performance""optimize""slow""high latency""memory leak" | `/team-perf` | `[--auto] [--once] [--focus] [--lang]` |
+| "安全审计""安全扫描""漏洞""安全检查""渗透""安全隐患" / "security audit""vulnerability""security scan""penetration test" | `/team-security` | `[--auto] [--once] [--scope] [--lang]` |
 
 ### 设计与方案
 
 | 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "写 RFC""技术方案""设计文档""技术设计""写方案" / "write RFC""technical proposal""design doc" | `/team-rfc` | `[--auto] [--type] [--lang]` |
-| "评审方案""评审设计""review RFC""评审文档""评估可行性" / "review proposal""review design""evaluate feasibility" | `/team-design-review` | `[--auto] [--lang]` |
-| "设计 API""API 评审""接口设计""定义接口""重新设计 API" / "design API""API review""define interface""redesign API" | `/team-api-design` | `[--auto] [--style] [--lang]` |
+| "写 RFC""技术方案""设计文档""技术设计""写方案" / "write RFC""technical proposal""design doc" | `/team-rfc` | `[--auto] [--once] [--type] [--lang]` |
+| "评审方案""评审设计""review RFC""评审文档""评估可行性" / "review proposal""review design""evaluate feasibility" | `/team-design-review` | `[--auto] [--once] [--lang]` |
+| "设计 API""API 评审""接口设计""定义接口""重新设计 API" / "design API""API review""define interface""redesign API" | `/team-api-design` | `[--auto] [--once] [--style] [--lang]` |
 
 ### 运维与发布
 
 | 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "线上故障""生产事故""告警""服务不可用""紧急""生产环境...尽快" / "production outage""alert""service down""urgent""emergency" | `/team-incident` | `[--auto] [--severity] [--lang]` |
-| "复盘""事后分析""postmortem""故障总结""经验教训" / "postmortem""retrospective""lessons learned""incident review" | `/team-postmortem` | `[--auto] [--lang]` |
-| "发布""上线""release""版本""changelog" / "release""deploy""publish version""release notes" | `/team-release` | `[--auto] [--type] [--from] [--lang]` |
+| "线上故障""生产事故""告警""服务不可用""紧急""生产环境...尽快" / "production outage""alert""service down""urgent""emergency" | `/team-incident` | `[--auto] [--once] [--severity] [--lang]` |
+| "复盘""事后分析""postmortem""故障总结""经验教训" / "postmortem""retrospective""lessons learned""incident review" | `/team-postmortem` | `[--auto] [--once] [--lang]` |
+| "发布""上线""release""版本""changelog" / "release""deploy""publish version""release notes" | `/team-release` | `[--auto] [--once] [--type] [--from] [--lang]` |
 
 ### 调研与文档
 
 | 意图信号（中/英） | 目标 Skill | 传递参数 |
 |---------|-----------|---------|
-| "调研""研究""对比""技术选型""了解""分析趋势" / "research""compare""tech selection""evaluate options" | `/team-research` | `[--auto] [--depth] [--lang]` |
-| "入职文档""知识库""上手指南""项目文档""新人""改进文档""更新文档""完善文档" / "onboarding""knowledge base""getting started""improve docs""update documentation" | `/team-onboard` | `[--auto] [--target] [--lang]` |
-| "成本优化""成本分析""降本""资源利用率""GPU 利用率" / "cost optimization""cost analysis""reduce cost""resource utilization" | `/team-cost` | `[--auto] [--scope] [--lang]` |
+| "调研""研究""对比""技术选型""了解""分析趋势" / "research""compare""tech selection""evaluate options" | `/team-research` | `[--auto] [--once] [--depth] [--lang]` |
+| "入职文档""知识库""上手指南""项目文档""新人""改进文档""更新文档""完善文档" / "onboarding""knowledge base""getting started""improve docs""update documentation" | `/team-onboard` | `[--auto] [--once] [--target] [--lang]` |
+| "成本优化""成本分析""降本""资源利用率""GPU 利用率" / "cost optimization""cost analysis""reduce cost""resource utilization" | `/team-cost` | `[--auto] [--once] [--scope] [--lang]` |
 
 ---
 
@@ -116,6 +117,7 @@ argument-hint: [--auto] [--lang=zh|en] 任务描述
 
 使用 Skill 工具调用选中的 team-* skill：
 - 将 `--auto`（如有）传递
+- 将 `--once`（如有）传递
 - 将 `--lang`（如有）传递
 - 将其余参数和任务描述作为 args 传递
 - 如果用户提供了目标 skill 特有的参数（如 `--depth`、`--focus`、`--scope`），一并传递

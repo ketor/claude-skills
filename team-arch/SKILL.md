@@ -1,11 +1,12 @@
 ---
 name: team-arch
-description: 启动一个架构分析团队（scanner/analyzer×2/analyst/writer），通过自动化指标采集+双分析师独立分析+共识合并+交叉验证，输出高质量结构化架构文档和 Mermaid 可视化图表。使用方式：/team-arch [--auto] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
-argument-hint: [--auto] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
+description: 启动一个架构分析团队（scanner/analyzer×2/analyst/writer），通过自动化指标采集+双分析师独立分析+共识合并+交叉验证，输出高质量结构化架构文档和 Mermaid 可视化图表。使用方式：/team-arch [--auto] [--once] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
+argument-hint: [--auto] [--once] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：
-- `--auto`：自主模式（减少用户确认）
+- `--auto`：完全自主模式（不询问用户任何问题，全程自动决策）
+- `--once`：单轮确认模式（将所有需要确认的问题合并为一轮提问，确认后全程自动执行）
 - `--depth=shallow|standard|deep`：分析深度（默认 `standard`）
 - `--focus=module1,module2`：聚焦分析模块（可选，默认全量分析）
 - `--lang=zh|en`：输出语言（默认 `zh` 中文）
@@ -13,15 +14,18 @@ argument-hint: [--auto] [--depth=shallow|standard|deep] [--focus=module1,module2
 | 模式 | 用户确认范围 | 条件节点处理 |
 |------|-------------|-------------|
 | **标准模式**（默认） | 项目概况确认 + 分歧仲裁 + 最终文档确认 | 正常询问用户 |
-| **自主模式**（`--auto`） | 仅最终文档确认 | 自动决策 + 收尾汇总 |
+| **单轮确认模式**（`--once`） | 仅最终文档确认 | 自动决策 + 收尾汇总 |
+| **完全自主模式**（`--auto`） | 不询问用户 | 全部自动决策，收尾汇总所有决策 |
 
-自主模式下条件节点自动决策规则：
+单轮确认模式下条件节点自动决策规则：
 - **分析深度不确定** → team lead 根据项目规模自行判断，在最终文档中说明
 - **两位 analyzer 分歧** → analyst 标注分歧，team lead 综合论证后裁决，收尾时汇总
 - **分歧超过 50%** → **不可跳过，必须暂停问用户**（熔断机制）
 - **交叉验证异议超过 3 项** → **不可跳过，必须暂停问用户**（熔断机制）
 - **项目过大无法完整分析** → scanner 识别核心模块，analyzer 聚焦核心模块
 - **`--focus` 参数处理**：如果用户指定了 `--focus`，scanner 和 analyzer 优先分析指定模块，其余模块仅概览级别
+
+完全自主模式下：所有节点均自动决策，不询问用户。熔断机制仍然生效（分歧超过 50%、交叉验证异议超过 3 项时仍必须暂停问用户）。
 
 分析深度说明：
 
@@ -110,7 +114,8 @@ Team lead 根据 scanner 报告评估：
   - 大型项目（>10 万行）→ 默认 `shallow`，用户要求 `deep` 时需警告耗时较长
 
 **标准模式**：向用户展示项目概况 + 客观指标 + 深度建议，AskUserQuestion 确认
-**自主模式**：team lead 自行决定，收尾汇总时说明
+**单轮确认模式**：team lead 自行决定，收尾汇总时说明
+**完全自主模式**：自动决策，不询问用户
 
 ---
 
@@ -235,7 +240,7 @@ Team lead 对分歧清单中的每个分歧点：
 
 2. 收到双方论证后：
    - **标准模式**：team lead 向用户展示分歧摘要和双方论证，AskUserQuestion 让用户裁决
-   - **自主模式**：team lead 综合双方论证和代码证据自行裁决
+   - **单轮确认模式/完全自主模式**：team lead 综合双方论证和代码证据自行裁决
 
 3. 将仲裁结果发送给 analyst 更新分析
 
@@ -387,7 +392,8 @@ AskUserQuestion 确认：
 - 需要补充某些方面的分析
 - 需要调整某些结论
 
-**自主模式**：必须经用户确认。
+**单轮确认模式**：必须经用户确认。
+**完全自主模式**：自动决策，不询问用户。
 
 ---
 
@@ -408,7 +414,7 @@ Team lead 向用户输出：
 - 共识度和分歧处理情况
 - 交叉验证结果概要
 - 文档保存位置
-- **（自主模式）自动决策汇总**：列出所有自动决策的节点、决策内容和理由
+- **（单轮确认模式/完全自主模式）自动决策汇总**：列出所有自动决策的节点、决策内容和理由
 
 ### 步骤 18：清理
 

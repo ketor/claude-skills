@@ -1,25 +1,29 @@
 ---
 name: team-rfc
-description: 启动一个技术方案设计团队（researcher/architect×2/reviewer/writer），通过技术调研、双路独立方案设计、三人评审组会、方案收敛，输出标准化 RFC/技术设计文档。使用方式：/team-rfc [--auto] [--type=feature|refactor|migration|integration] [--lang=zh|en] 技术需求描述
-argument-hint: [--auto] [--type=feature|refactor|migration|integration] [--lang=zh|en] 技术需求描述
+description: 启动一个技术方案设计团队（researcher/architect×2/reviewer/writer），通过技术调研、双路独立方案设计、三人评审组会、方案收敛，输出标准化 RFC/技术设计文档。使用方式：/team-rfc [--auto] [--once] [--type=feature|refactor|migration|integration] [--lang=zh|en] 技术需求描述
+argument-hint: [--auto] [--once] [--type=feature|refactor|migration|integration] [--lang=zh|en] 技术需求描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：
-- `--auto`：自主模式（减少用户确认）
+- `--auto`：完全自主模式（不询问用户任何问题，全程自动决策）
+- `--once`：单轮确认模式（将所有需要确认的问题合并为一轮提问，确认后全程自动执行）
 - `--type=feature|refactor|migration|integration`：RFC 类型（默认根据需求自动推断）
 - `--lang=zh|en`：输出语言（默认 `zh` 中文）
 
 | 模式 | 用户确认范围 | 条件节点处理 |
 |------|-------------|-------------|
 | **标准模式**（默认） | 需求分析确认 + 方案评审确认 + RFC 文档确认 | 正常询问用户 |
-| **自主模式**（`--auto`） | 仅 RFC 文档确认 | 自动决策 + 收尾汇总 |
+| **单轮确认模式**（`--once`） | 仅 RFC 文档确认 | 自动决策 + 收尾汇总 |
+| **完全自主模式**（`--auto`） | 不询问用户 | 全部自动决策，收尾汇总所有决策 |
 
-自主模式下条件节点自动决策规则：
+单轮确认模式下条件节点自动决策规则：
 - **需求边界不明确** → team lead 自行界定范围，在最终文档附录中说明
 - **两位 architect 方案分歧** → reviewer 评审后 team lead 综合裁决，收尾时汇总
 - **architect 分歧 > 50%** → **不可跳过，必须暂停问用户**（熔断机制）
 - **reviewer 否决全部方案** → **不可跳过，必须暂停问用户**（熔断机制）
 - **researcher 报告"关键技术信息不足"** → **不可跳过，必须暂停问用户调整需求/补充上下文**（熔断机制）
+
+完全自主模式下：所有节点均自动决策，不询问用户。仅熔断机制（architect 分歧 > 50%、reviewer 否决全部方案、researcher 报告关键技术信息不足）仍然生效，触发时必须暂停。
 
 RFC 类型说明：
 
@@ -94,7 +98,8 @@ Team lead 解析 `$ARGUMENTS` 中的技术需求：
 - 如果需求明确 → 直接进入阶段一
 - 如果需求模糊或边界不清：
   - **标准模式**：向用户展示需求解读、RFC 类型、约束条件清单，AskUserQuestion 确认
-  - **自主模式**：team lead 自行界定范围，收尾时说明
+  - **单轮确认模式**：team lead 自行界定范围，收尾时说明
+  - **完全自主模式**：自动决策，不询问用户
 
 ---
 
@@ -283,7 +288,8 @@ Team lead 综合评审结果，确定最终方案：
 
 方案确认：
 - **标准模式**：向用户展示推荐方案摘要、评审结论、与备选方案的核心差异，AskUserQuestion 确认
-- **自主模式**：team lead 采纳 reviewer 推荐，收尾时汇总决策过程
+- **单轮确认模式**：team lead 采纳 reviewer 推荐，收尾时汇总决策过程
+- **完全自主模式**：自动决策，不询问用户
 
 确认后，关闭 architect-1、architect-2、reviewer。
 
@@ -316,7 +322,7 @@ Writer 按以下标准 RFC 模板生成文档：
 | 创建日期 | YYYY-MM-DD |
 | 类型 | Feature / Refactor / Migration / Integration |
 | 生成团队 | team-rfc-{YYYYMMDD-HHmmss} |
-| 执行模式 | 标准模式 / 自主模式 |
+| 执行模式 | 标准模式 / 单轮确认模式 / 完全自主模式 |
 | 输出语言 | zh / en |
 
 ## 1. 摘要
@@ -427,7 +433,8 @@ AskUserQuestion 确认：
 - 需要修改某些章节
 - 需要补充某些设计细节
 
-**自主模式**：必须经用户确认。
+**单轮确认模式**：必须经用户确认。
+**完全自主模式**：自动决策，不询问用户，收尾时汇总。
 
 ---
 
@@ -448,7 +455,7 @@ Team lead 按 `--lang` 指定的语言向用户输出：
 - 评审关键结论
 - 实施计划概要
 - 文档保存位置
-- **（自主模式）自动决策汇总**：
+- **（单轮确认模式/完全自主模式）自动决策汇总**：
   | 决策节点 | 决策内容 | 理由 |
   |---------|---------|------|
   | [阶段/步骤] | [决策描述] | [理由] |
