@@ -1,7 +1,7 @@
 ---
 name: team-security
-description: 启动一个安全审计团队（scanner/auditor×2/analyst/reporter），通过自动化扫描+双路独立手工审计+合并分析+报告生成，对项目进行全面安全审计、漏洞评估、风险定级和修复建议。使用方式：/team-security [--auto] [--once] [--scope=full,api,auth,data,deps,infra] [--lang=zh|en] 项目路径或安全审计需求
-argument-hint: [--auto] [--once] [--scope=full,api,auth,data,deps,infra] [--lang=zh|en] 项目路径或安全审计需求
+description: 启动一个安全审计团队（scanner/auditor×2/analyst/reporter），通过自动化扫描+双路独立手工审计+合并分析+报告生成，对项目进行全面安全审计、漏洞评估、风险定级和修复建议。使用方式：/team-security [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--scope=full,api,auth,data,deps,infra] [--lang=zh|en] 项目路径或安全审计需求
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--scope=full,api,auth,data,deps,infra] [--lang=zh|en] 项目路径或安全审计需求
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

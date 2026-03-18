@@ -1,7 +1,7 @@
 ---
 name: team
-description: 智能路由——根据任务描述自动选择最合适的 team-* skill 并调用。无需记忆 16 个 skill 名称，只需 /team 你的任务。使用方式：/team [--auto] [--once] [--lang=zh|en] 任务描述
-argument-hint: [--auto] [--once] [--lang=zh|en] 任务描述
+description: 智能路由——根据任务描述自动选择最合适的 team-* skill 并调用。无需记忆 16 个 skill 名称，只需 /team 你的任务。使用方式：/team [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] 任务描述
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] 任务描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

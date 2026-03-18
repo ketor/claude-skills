@@ -1,7 +1,7 @@
 ---
 name: team-arch
-description: 启动一个架构分析团队（scanner/analyzer×2/analyst/writer），通过自动化指标采集+双分析师独立分析+共识合并+交叉验证，输出高质量结构化架构文档和 Mermaid 可视化图表。使用方式：/team-arch [--auto] [--once] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
-argument-hint: [--auto] [--once] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
+description: 启动一个架构分析团队（scanner/analyzer×2/analyst/writer），通过自动化指标采集+双分析师独立分析+共识合并+交叉验证，输出高质量结构化架构文档和 Mermaid 可视化图表。使用方式：/team-arch [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--depth=shallow|standard|deep] [--focus=module1,module2] [--lang=zh|en] 项目路径或描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

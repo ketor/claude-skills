@@ -1,7 +1,7 @@
 ---
 name: team-debug
-description: 启动一个系统化故障诊断团队（reproducer/analyzer×2/fixer/verifier），对 bug/异常行为进行双路独立根因分析、TDD 修复和全量验证。使用方式：/team-debug [--auto] [--once] [--lang=zh|en] bug描述或issue链接
-argument-hint: [--auto] [--once] [--lang=zh|en] bug描述或issue链接
+description: 启动一个系统化故障诊断团队（reproducer/analyzer×2/fixer/verifier），对 bug/异常行为进行双路独立根因分析、TDD 修复和全量验证。使用方式：/team-debug [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] bug描述或issue链接
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] bug描述或issue链接
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

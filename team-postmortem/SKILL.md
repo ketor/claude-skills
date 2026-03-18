@@ -1,7 +1,7 @@
 ---
 name: team-postmortem
-description: 启动一个复盘分析团队（chronicler/analyzer×2/reviewer/writer），对故障/事件进行系统化复盘，重建时间线，双路独立根因分析（技术+流程），审查改进措施可行性，输出标准化复盘报告。使用方式：/team-postmortem [--auto] [--once] [--lang=zh|en] 故障/事件描述或incident报告路径
-argument-hint: [--auto] [--once] [--lang=zh|en] 故障/事件描述或incident报告路径
+description: 启动一个复盘分析团队（chronicler/analyzer×2/reviewer/writer），对故障/事件进行系统化复盘，重建时间线，双路独立根因分析（技术+流程），审查改进措施可行性，输出标准化复盘报告。使用方式：/team-postmortem [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] 故障/事件描述或incident报告路径
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] 故障/事件描述或incident报告路径
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

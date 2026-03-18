@@ -1,7 +1,7 @@
 ---
 name: team-design-review
-description: 启动一个方案评审团队（reader-1/reader-2/challenger/analyst/summarizer），对技术方案/RFC/设计文档进行双路独立评审 + 魔鬼代言人挑战 + 结构化评分，输出评审报告和判定结论（Approved/Conditionally Approved/Rejected）。使用方式：/team-design-review [--auto] [--once] [--lang=zh|en] 设计文档路径或URL
-argument-hint: [--auto] [--once] [--lang=zh|en] 设计文档路径或URL
+description: 启动一个方案评审团队（reader-1/reader-2/challenger/analyst/summarizer），对技术方案/RFC/设计文档进行双路独立评审 + 魔鬼代言人挑战 + 结构化评分，输出评审报告和判定结论（Approved/Conditionally Approved/Rejected）。使用方式：/team-design-review [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] 设计文档路径或URL
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--lang=zh|en] 设计文档路径或URL
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

@@ -1,7 +1,7 @@
 ---
 name: team-perf
-description: 启动一个性能优化团队（profiler/analyzer×2/optimizer/benchmarker），通过基线采集+双路独立瓶颈分析+迭代优化+基准验证，对项目进行系统性性能优化。每次优化一个瓶颈，优化后立即验证，确保无回归。使用方式：/team-perf [--auto] [--once] [--focus=cpu,memory,io,latency,throughput] [--lang=zh|en] 性能问题描述或优化目标
-argument-hint: [--auto] [--once] [--focus=cpu,memory,io,latency,throughput] [--lang=zh|en] 性能问题描述或优化目标
+description: 启动一个性能优化团队（profiler/analyzer×2/optimizer/benchmarker），通过基线采集+双路独立瓶颈分析+迭代优化+基准验证，对项目进行系统性性能优化。每次优化一个瓶颈，优化后立即验证，确保无回归。使用方式：/team-perf [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--focus=cpu,memory,io,latency,throughput] [--lang=zh|en] 性能问题描述或优化目标
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--focus=cpu,memory,io,latency,throughput] [--lang=zh|en] 性能问题描述或优化目标
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

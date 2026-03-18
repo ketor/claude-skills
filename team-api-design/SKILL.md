@@ -1,7 +1,7 @@
 ---
 name: team-api-design
-description: 启动一个 API 设计团队（researcher/designer×2/reviewer/documenter），通过需求分析+双设计师独立设计+专家评审+文档生成，输出高质量 API 定义和标准化文档（OpenAPI/Protobuf/GraphQL Schema）。使用方式：/team-api-design [--auto] [--once] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
-argument-hint: [--auto] [--once] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
+description: 启动一个 API 设计团队（researcher/designer×2/reviewer/documenter），通过需求分析+双设计师独立设计+专家评审+文档生成，输出高质量 API 定义和标准化文档（OpenAPI/Protobuf/GraphQL Schema）。使用方式：/team-api-design [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--style=rest|grpc|graphql] [--lang=zh|en] API 需求描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

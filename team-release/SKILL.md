@@ -1,7 +1,7 @@
 ---
 name: team-release
-description: 启动一个发布管理团队（scanner/validator×2/writer/checker），按阶段协作完成变更扫描、双路验证、风险评估、Changelog 生成和发布前检查。使用方式：/team-release [--auto] [--once] [--type=major|minor|patch|hotfix] [--from=tag/commit] [--lang=zh|en] 发布描述或版本号
-argument-hint: [--auto] [--once] [--type=major|minor|patch|hotfix] [--from=tag/commit] [--lang=zh|en] 发布描述或版本号
+description: 启动一个发布管理团队（scanner/validator×2/writer/checker），按阶段协作完成变更扫描、双路验证、风险评估、Changelog 生成和发布前检查。使用方式：/team-release [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--type=major|minor|patch|hotfix] [--from=tag/commit] [--lang=zh|en] 发布描述或版本号
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--type=major|minor|patch|hotfix] [--from=tag/commit] [--lang=zh|en] 发布描述或版本号
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

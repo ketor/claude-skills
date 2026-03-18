@@ -1,7 +1,7 @@
 ---
 name: team-refactor
-description: 启动一个重构工程团队（analyzer/planner×2/coder/reviewer/tester），按阶段协作完成影响分析、双路方案设计、分批原子重构、持续验证和收尾。使用方式：/team-refactor [--auto] [--once] [--scope=module|package|system] [--lang=zh|en] 重构目标描述
-argument-hint: [--auto] [--once] [--scope=module|package|system] [--lang=zh|en] 重构目标描述
+description: 启动一个重构工程团队（analyzer/planner×2/coder/reviewer/tester），按阶段协作完成影响分析、双路方案设计、分批原子重构、持续验证和收尾。使用方式：/team-refactor [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--scope=module|package|system] [--lang=zh|en] 重构目标描述
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--scope=module|package|system] [--lang=zh|en] 重构目标描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

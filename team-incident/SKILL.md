@@ -1,7 +1,7 @@
 ---
 name: team-incident
-description: 启动一个故障响应团队（triager/investigator×2/fixer/verifier），按阶段协作完成故障分级、快速止血、双路调查、根因定位、修复验证和收尾总结。使用方式：/team-incident [--auto] [--once] [--severity=P0|P1|P2|P3] [--lang=zh|en] 故障描述或告警信息
-argument-hint: [--auto] [--once] [--severity=P0|P1|P2|P3] [--lang=zh|en] 故障描述或告警信息
+description: 启动一个故障响应团队（triager/investigator×2/fixer/verifier），按阶段协作完成故障分级、快速止血、双路调查、根因定位、修复验证和收尾总结。使用方式：/team-incident [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--severity=P0|P1|P2|P3] [--lang=zh|en] 故障描述或告警信息
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--severity=P0|P1|P2|P3] [--lang=zh|en] 故障描述或告警信息
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：

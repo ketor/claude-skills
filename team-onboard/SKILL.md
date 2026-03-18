@@ -1,7 +1,7 @@
 ---
 name: team-onboard
-description: 启动一个知识库构建团队（scanner/analyst×2/reviewer/writer），通过项目扫描+双路独立知识提取+合并审查+文档生成，输出高质量入职指南、架构概览、开发手册、FAQ 和术语表。使用方式：/team-onboard [--auto] [--once] [--target=newcomer|senior|all] [--lang=zh|en] 项目路径或描述
-argument-hint: [--auto] [--once] [--target=newcomer|senior|all] [--lang=zh|en] 项目路径或描述
+description: 启动一个知识库构建团队（scanner/analyst×2/reviewer/writer），通过项目扫描+双路独立知识提取+合并审查+文档生成，输出高质量入职指南、架构概览、开发手册、FAQ 和术语表。使用方式：/team-onboard [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--target=newcomer|senior|all] [--lang=zh|en] 项目路径或描述
+argument-hint: [--auto (全自动，不询问)] [--once (仅确认一次后自动执行)] [--target=newcomer|senior|all] [--lang=zh|en] 项目路径或描述
 ---
 
 **参数解析**：从 `$ARGUMENTS` 中检测以下标志：
